@@ -1,0 +1,66 @@
+.dashboard {
+  padding: var(--spacing-xl) 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-xl);
+}
+
+.card {
+  background-color: var(--bg-primary);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  text-align: center;
+}
+
+.card h3 {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.number {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin: var(--spacing-md) 0;
+}
+
+.quickActions {
+  margin-top: var(--spacing-xl);
+  background-color: var(--bg-primary);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+}
+
+.actionButtons {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+.actionBtn {
+  flex: 1;
+  padding: var(--spacing-md);
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.actionBtn:hover {
+  background-color: var(--color-primary-dark);
+}
+
+@media (max-width: 768px) {
+  .actionButtons {
+    flex-direction: column;
+  }
+}

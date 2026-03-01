@@ -1,0 +1,101 @@
+.home {
+  width: 100%;
+}
+
+.hero {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: white;
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.heroTitle {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-lg);
+  color: white;
+}
+
+.heroSubtitle {
+  font-size: 1.25rem;
+  margin-bottom: var(--spacing-xl);
+  opacity: 0.9;
+}
+
+.heroButtons {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+}
+
+.btnPrimary,
+.btnSecondary {
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btnPrimary {
+  background-color: white;
+  color: var(--color-primary);
+}
+
+.btnPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btnSecondary {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.btnSecondary:hover {
+  background-color: white;
+  color: var(--color-primary);
+}
+
+.servicesPreview,
+.whyChooseUs {
+  padding: 4rem 0;
+}
+
+.servicesGrid,
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-xl);
+}
+
+.serviceCard,
+.feature {
+  background-color: var(--bg-primary);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  transition: transform 0.2s;
+}
+
+.serviceCard:hover,
+.feature:hover {
+  transform: translateY(-5px);
+}
+
+.serviceCard h3,
+.feature h3 {
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2rem;
+  }
+
+  .heroButtons {
+    flex-direction: column;
+    align-items: center;
+  }
+}

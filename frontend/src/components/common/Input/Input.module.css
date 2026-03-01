@@ -1,0 +1,41 @@
+.label {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.input {
+  padding: var(--spacing-md);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.input.error {
+  border-color: var(--color-secondary);
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.errorText {
+  display: block;
+  margin-top: var(--spacing-xs);
+  font-size: 0.875rem;
+  color: var(--color-secondary);
+}
+
+.helperText {
+  display: block;
+  margin-top: var(--spacing-xs);
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}

@@ -1,0 +1,13 @@
+.authLayout {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+}
+
+.authContainer {
+  width: 100%;
+  max-width: 450px;
+  padding: var(--spacing-lg);
+}

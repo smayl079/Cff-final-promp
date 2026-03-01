@@ -1,0 +1,137 @@
+.authCard {
+  background-color: white;
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+}
+
+.title {
+  text-align: center;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.subtitle {
+  text-align: center;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-xl);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.formGroup label {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.formGroup input {
+  padding: var(--spacing-md);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+}
+
+.formGroup input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.rememberForgot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  cursor: pointer;
+}
+
+.link {
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.submitBtn {
+  background-color: var(--color-primary);
+  color: white;
+  padding: var(--spacing-md);
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: var(--spacing-md);
+}
+
+.submitBtn:hover:not(:disabled) {
+  background-color: var(--color-primary-dark);
+}
+
+.submitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.divider {
+  text-align: center;
+  margin: var(--spacing-lg) 0;
+  color: var(--text-secondary);
+  position: relative;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background-color: var(--border-color);
+}
+
+.divider::before {
+  left: 0;
+}
+
+.divider::after {
+  right: 0;
+}
+
+.switchAuth {
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 480px) {
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+
+  .authCard {
+    padding: var(--spacing-lg);
+  }
+}
