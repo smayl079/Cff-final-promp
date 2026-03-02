@@ -1,19 +1,23 @@
 import { BrowserRouter } from 'react-router-dom'
 import { AuthProvider } from './context/AuthContext'
 import { NotificationProvider } from './context/NotificationContext'
+import { LanguageProvider } from './context/LanguageContext'
 import AppRoutes from './routes/AppRoutes'
 import { Toaster } from 'react-hot-toast'
+import './i18n/config'
 import './App.css'
 
 function App() {
   return (
     <BrowserRouter>
-      <NotificationProvider>
-        <AuthProvider>
-          <AppRoutes />
-          <Toaster position="top-right" />
-        </AuthProvider>
-      </NotificationProvider>
+      <LanguageProvider>
+        <NotificationProvider>
+          <AuthProvider>
+            <AppRoutes />
+            <Toaster position="top-right" />
+          </AuthProvider>
+        </NotificationProvider>
+      </LanguageProvider>
     </BrowserRouter>
   )
 }
