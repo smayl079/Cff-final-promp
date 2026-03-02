@@ -36,9 +36,6 @@ const AppRoutes = () => {
 
       {/* 404 Not Found */}
       <Route path="*" element={<Navigate to="/" replace />} />
-        <Route path="/customer/dashboard" element={<CustomerDashboard />} />
-      {/* 404 Not Found */}
-      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 };
