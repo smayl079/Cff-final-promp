@@ -171,6 +171,15 @@
   color: var(--color-secondary);
 }
 
+.dropdown-item.logout-item {
+  color: var(--color-danger);
+}
+
+.dropdown-item.logout-item:hover {
+  background: rgba(220, 38, 38, 0.1);
+  color: var(--color-danger);
+}
+
 .dropdown-divider {
   margin: 0;
   border: none;

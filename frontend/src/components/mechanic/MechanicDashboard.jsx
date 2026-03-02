@@ -1,11 +1,27 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Car, Calendar, Wrench, Phone } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext';
+import { useNotification } from '../../context/NotificationContext';
+import { Car, Calendar, Wrench, Phone, LogOut } from 'lucide-react';
 import './MechanicDashboard.css';
 
 const MechanicDashboard = () => {
   const { t } = useTranslation();
+  const { logout, user } = useAuth();
+  const { showSuccess } = useNotification();
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('myJobs');
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      showSuccess(t('auth.logoutSuccess'));
+      navigate('/login', { replace: true });
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
+  };
 
   const jobs = [
     {
@@ -50,6 +66,24 @@ const MechanicDashboard = () => {
 
   return (
     <div className="mechanic-dashboard">
+      {/* Top Bar */}
+      <div className="mechanic-topbar">
+        <div className="topbar-content">
+          <div className="topbar-left">
+            <h2 className="mechanic-name">{user?.firstName || 'Mechanic'}</h2>
+            <span className="mechanic-badge">🔧 {user?.role || 'Mechanic'}</span>
+          </div>
+          <button 
+            className="logout-btn"
+            onClick={handleLogout}
+            title={t('nav.logout')}
+          >
+            <LogOut size={20} />
+            <span className="logout-text">{t('nav.logout')}</span>
+          </button>
+        </div>
+      </div>
+
       <div className="mechanic-header">
         <h1>{t('mechanic.myJobs')}</h1>
         <p>View and manage your assigned service appointments</p>

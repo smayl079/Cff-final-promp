@@ -130,6 +130,67 @@
   color: var(--color-secondary);
 }
 
+/* Auth Section */
+.auth-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.user-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-secondary), var(--color-secondary-dark));
+  color: var(--color-white);
+  border: none;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+
+.btn-outline:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.mobile-user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 12px 0;
+  color: var(--text-primary);
+  font-weight: 500;
+  border-bottom: 1px solid var(--border-color);
+}
+
 .mobile-menu-btn {
   display: none;
   background: transparent;
@@ -152,7 +213,12 @@
     display: none;
   }
 
-  .header-right .btn-primary {
+  .header-right .btn-primary,
+  .header-right .btn-outline {
+    display: none;
+  }
+
+  .auth-section {
     display: none;
   }
 
@@ -174,5 +240,6 @@
     width: 100%;
     padding: 12px 0;
     text-align: center;
+    justify-content: center;
   }
 }

@@ -146,8 +146,45 @@
     "addNotes": "Qeyd Əlavə Et",
     "uploadPhotos": "Şəkillər Yüklə",
     "callCustomer": "Müştəriyə Zəng Et"
-  },
-  "common": {
+  },  "auth": {
+    "welcomeBack": "Xoş Gəldiniz",
+    "signInMessage": "Avtomobil xidmətlərinizi idarə etmək üçün daxil olun",
+    "tagline": "Sertifikatlı mexaniklər və keyfiyyətli ehtiyat hissələri ilə peşəkar avtomobil təmir xidmətləri",
+    "email": "E-poçt Ünvanı",
+    "emailPlaceholder": "E-poçtunuzu daxil edin",
+    "password": "Şifrə",
+    "passwordPlaceholder": "Şifrənizi daxil edin",
+    "rememberMe": "30 gün yadda saxla",
+    "forgotPassword": "Şifrəni unutmusunuz?",
+    "signIn": "Daxil ol",
+    "loggingIn": "Daxil olunur...",
+    "secureLogin": "Məlumatlarınız şifrələnib və təhlükəsizdir",
+    "noAccount": "Hesabınız yoxdur?",
+    "registerHere": "Qeydiyyatdan keçin",
+    "loginSuccess": "Uğurla daxil oldunuz!",
+    "logoutSuccess": "Uğurla çıxdınız",
+    "logoutConfirm": "Çıxmaq istədiyinizə əminsiniz?",
+    "yesLogout": "Bəli, Çıx",
+    "sessionExpired": "Sessiyanız başa çatdı. Zəhmət olmasa yenidən daxil olun.",
+    "stillThere": "Hələ buradasınız?",
+    "sessionExpireWarning": "Fəaliyyətsizliyə görə sessiyanız 5 dəqiqə ərzində başa çatacaq.",
+    "keepLoggedIn": "Bəli, daxil qalım",
+    "trustStats": {
+      "customers": "Məmnun Müştəri",
+      "experience": "İl Təcrübə",
+      "support": "Müştəri Dəstəyi"
+    },
+    "testimonial": "İstifadə etdiyim ən yaxşı avtomobil xidməti! Peşəkar, sürətli və münasib qiymətli. Şiddətlə tövsiyə olunur!",
+    "testimonialAuthor": "Əli Məmmədov, Daimi Müştəri",
+    "errors": {
+      "emailRequired": "E-poçt tələb olunur",
+      "emailInvalid": "Zəhmət olmasa düzgün e-poçt ünvanı daxil edin",
+      "passwordRequired": "Şifrə tələb olunur",
+      "passwordTooShort": "Şifrə ən azı 6 simvol olmalıdır",
+      "loginFailed": "Yanlış e-poçt və ya şifrə",
+      "fixErrors": "Zəhmət olmasa göndərməzdən əvvəl xətaları düzəldin"
+    }
+  },  "common": {
     "loading": "Yüklənir...",
     "error": "Xəta",
     "success": "Uğur",

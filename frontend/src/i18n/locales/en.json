@@ -147,6 +147,45 @@
     "uploadPhotos": "Upload Photos",
     "callCustomer": "Call Customer"
   },
+  "auth": {
+    "welcomeBack": "Welcome Back",
+    "signInMessage": "Sign in to manage your automotive needs",
+    "tagline": "Professional car repair services with certified mechanics and quality parts",
+    "email": "Email Address",
+    "emailPlaceholder": "Enter your email",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "rememberMe": "Remember me for 30 days",
+    "forgotPassword": "Forgot password?",
+    "signIn": "Sign In",
+    "loggingIn": "Logging in...",
+    "secureLogin": "Your data is encrypted and secure",
+    "noAccount": "Don't have an account?",
+    "registerHere": "Register here",
+    "loginSuccess": "Successfully logged in!",
+    "logoutSuccess": "Logged out successfully",
+    "logoutConfirm": "Are you sure you want to logout?",
+    "yesLogout": "Yes, Logout",
+    "sessionExpired": "Your session has expired. Please login again.",
+    "stillThere": "Still there?",
+    "sessionExpireWarning": "Your session will expire in 5 minutes due to inactivity.",
+    "keepLoggedIn": "Yes, keep me logged in",
+    "trustStats": {
+      "customers": "Happy Customers",
+      "experience": "Years Experience",
+      "support": "Customer Support"
+    },
+    "testimonial": "Best car service I've ever used! Professional, fast, and affordable. Highly recommended!",
+    "testimonialAuthor": "John Smith, Regular Customer",
+    "errors": {
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email address",
+      "passwordRequired": "Password is required",
+      "passwordTooShort": "Password must be at least 6 characters",
+      "loginFailed": "Invalid email or password",
+      "fixErrors": "Please fix the errors before submitting"
+    }
+  },
   "common": {
     "loading": "Loading...",
     "error": "Error",

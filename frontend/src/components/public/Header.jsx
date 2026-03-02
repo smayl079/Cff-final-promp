@@ -1,15 +1,30 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '../../context/LanguageContext';
-import { Menu, X, Globe } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext';
+import { useNotification } from '../../context/NotificationContext';
+import { Menu, X, Globe, LogIn, LogOut, User } from 'lucide-react';
 import './Header.css';
 
 const Header = () => {
   const { t } = useTranslation();
   const { currentLanguage, changeLanguage, languages } = useLanguage();
+  const { isAuthenticated, user, logout } = useAuth();
+  const { showSuccess } = useNotification();
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      showSuccess(t('auth.logoutSuccess'));
+      navigate('/');
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
+  };
 
   return (
     <header className="header">
@@ -59,6 +74,22 @@ const Header = () => {
               )}
             </div>
 
+            {/* Auth Button */}
+            {isAuthenticated ? (
+              <div className="auth-section">
+                <span className="user-name">{user?.firstName || user?.email}</span>
+                <button onClick={handleLogout} className="btn btn-outline">
+                  <LogOut size={18} />
+                  {t('nav.logout')}
+                </button>
+              </div>
+            ) : (
+              <Link to="/login" className="btn btn-outline">
+                <LogIn size={18} />
+                {t('nav.login')}
+              </Link>
+            )}
+
             {/* Book Service Button */}
             <Link to="/booking" className="btn btn-primary">
               {t('nav.bookService')}
@@ -89,6 +120,29 @@ const Header = () => {
             <Link to="/contact" className="nav-link" onClick={() => setIsMenuOpen(false)}>
               {t('nav.contact')}
             </Link>
+            {isAuthenticated ? (
+              <>
+                <div className="mobile-user-info">
+                  <User size={18} />
+                  <span>{user?.firstName || user?.email}</span>
+                </div>
+                <button 
+                  onClick={() => {
+                    handleLogout();
+                    setIsMenuOpen(false);
+                  }} 
+                  className="btn btn-outline"
+                >
+                  <LogOut size={18} />
+                  {t('nav.logout')}
+                </button>
+              </>
+            ) : (
+              <Link to="/login" className="btn btn-outline" onClick={() => setIsMenuOpen(false)}>
+                <LogIn size={18} />
+                {t('nav.login')}
+              </Link>
+            )}
             <Link to="/booking" className="btn btn-primary" onClick={() => setIsMenuOpen(false)}>
               {t('nav.bookService')}
             </Link>
