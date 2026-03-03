@@ -6,10 +6,17 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CarRepairService.API.Controllers.v1;
 
+/// <summary>
+/// Authentication and Authorization endpoints
+/// </summary>
+/// <remarks>
+/// Handles user registration, login, token refresh, and password management
+/// </remarks>
 [ApiController]
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/[controller]")]
 [Produces("application/json")]
+[Tags("Authentication")] // STEP 3: Group endpoints
 public class AuthController : ControllerBase
 {
     private readonly IAuthService _authService;
@@ -24,6 +31,24 @@ public class AuthController : ControllerBase
     /// <summary>
     /// Register a new customer account
     /// </summary>
+    /// <remarks>
+    /// Sample request:
+    /// 
+    ///     POST /api/v1/Auth/register
+    ///     {
+    ///        "email": "customer@example.com",
+    ///        "password": "StrongPass123!",
+    ///        "confirmPassword": "StrongPass123!",
+    ///        "firstName": "John",
+    ///        "lastName": "Doe",
+    ///        "phoneNumber": "+1234567890"
+    ///     }
+    /// 
+    /// </remarks>
+    /// <param name="registerDto">Registration details</param>
+    /// <returns>Returns JWT token and user information</returns>
+    /// <response code="201">Successfully registered and returned auth token</response>
+    /// <response code="400">Invalid input or email already exists</response>
     [HttpPost("register")]
     [AllowAnonymous]
     [ProducesResponseType(typeof(AuthResponseDto), StatusCodes.Status201Created)]
@@ -43,6 +68,21 @@ public class AuthController : ControllerBase
     /// <summary>
     /// Login with email and password
     /// </summary>
+    /// <remarks>
+    /// Sample request:
+    /// 
+    ///     POST /api/v1/Auth/login
+    ///     {
+    ///        "email": "customer@example.com",
+    ///        "password": "StrongPass123!"
+    ///     }
+    ///     
+    /// Returns a JWT token that should be used in the Authorization header for protected endpoints
+    /// </remarks>
+    /// <param name="loginDto">Login credentials</param>
+    /// <returns>Returns JWT access token, refresh token, and user information</returns>
+    /// <response code="200">Successfully authenticated</response>
+    /// <response code="401">Invalid credentials</response>
     [HttpPost("login")]
     [AllowAnonymous]
     [ProducesResponseType(typeof(AuthResponseDto), StatusCodes.Status200OK)]

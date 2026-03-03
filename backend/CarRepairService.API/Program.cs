@@ -25,26 +25,75 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
+    // STEP 1 & 2: Configure Swagger Documentation
     c.SwaggerDoc("v1", new OpenApiInfo
     {
         Title = "Car Repair Service API",
         Version = "v1",
-        Description = "RESTful API for Car Repair Service Management System",
+        Description = @"
+            **Car Repair Service Management System API**
+            
+            A comprehensive RESTful API for managing car repair services, appointments, customers, and mechanics.
+            
+            **Features:**
+            - User Authentication & Authorization (JWT)
+            - Customer Management
+            - Vehicle Management
+            - Appointment Scheduling
+            - Service Catalog
+            - Mechanic Management
+            
+            **For Demo:**
+            1. Register a new account or use test credentials
+            2. Login to get JWT token
+            3. Click 'Authorize' button and enter: Bearer YOUR_TOKEN
+            4. Test protected endpoints
+        ",
         Contact = new OpenApiContact
         {
-            Name = "Car Repair Service",
-            Email = "support@carrepairservice.com"
+            Name = "Car Repair Service Team",
+            Email = "support@carrepairservice.com",
+            Url = new Uri("https://github.com/yourrepo")
+        },
+        License = new OpenApiLicense
+        {
+            Name = "MIT License",
+            Url = new Uri("https://opensource.org/licenses/MIT")
         }
     });
 
-    // Add JWT Authentication to Swagger
+    // STEP 3: Group endpoints by tags (configured in controllers)
+    c.TagActionsBy(api =>
+    {
+        if (api.GroupName != null)
+        {
+            return new[] { api.GroupName };
+        }
+
+        var controllerName = api.ActionDescriptor.RouteValues["controller"];
+        return new[] { controllerName ?? "Unknown" };
+    });
+    c.DocInclusionPredicate((name, api) => true);
+
+    // STEP 4: Enable XML documentation comments
+    var xmlFile = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    if (File.Exists(xmlPath))
+    {
+        c.IncludeXmlComments(xmlPath);
+    }
+
+    // STEP 5: Configure JWT Authentication in Swagger UI
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
-        Description = "JWT Authorization header using the Bearer scheme. Enter 'Bearer' [space] and then your token in the text input below.",
+        Description = @"JWT Authorization header using the Bearer scheme. 
+                      Enter 'Bearer' [space] and then your token in the text input below.
+                      Example: 'Bearer 12345abcdef'",
         Name = "Authorization",
         In = ParameterLocation.Header,
         Type = SecuritySchemeType.ApiKey,
-        Scheme = "Bearer"
+        Scheme = "Bearer",
+        BearerFormat = "JWT"
     });
 
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
@@ -56,11 +105,17 @@ builder.Services.AddSwaggerGen(c =>
                 {
                     Type = ReferenceType.SecurityScheme,
                     Id = "Bearer"
-                }
+                },
+                Scheme = "oauth2",
+                Name = "Bearer",
+                In = ParameterLocation.Header
             },
-            Array.Empty<string>()
+            new List<string>()
         }
     });
+
+    // Order actions by method
+    c.OrderActionsBy(apiDesc => $"{apiDesc.ActionDescriptor.RouteValues["controller"]}_{apiDesc.HttpMethod}");
 });
 
 // Add CORS
@@ -126,10 +181,28 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
+    
+    // STEP 2: Enhanced Swagger UI Configuration
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Car Repair Service API V1");
-        c.RoutePrefix = "swagger";
+        c.RoutePrefix = "swagger"; // Access via: https://localhost:PORT/swagger
+        
+        // UI Enhancements for Demo
+        c.DefaultModelsExpandDepth(2);
+        c.DefaultModelRendering(Swashbuckle.AspNetCore.SwaggerUI.ModelRendering.Model);
+        c.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None);
+        c.EnableDeepLinking();
+        c.DisplayRequestDuration();
+        c.EnableFilter();
+        c.ShowExtensions();
+        
+        // Persist authorization
+        c.EnablePersistAuthorization();
+        
+        // Custom CSS for professional look (optional)
+        c.DocumentTitle = "Car Repair Service API Documentation";
+        c.InjectStylesheet("/swagger-ui/custom.css"); // You can add custom CSS later
     });
 }
 

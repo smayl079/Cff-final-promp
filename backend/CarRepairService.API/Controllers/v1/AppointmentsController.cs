@@ -6,10 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CarRepairService.API.Controllers.v1;
 
+/// <summary>
+/// Appointment management endpoints
+/// </summary>
 [ApiController]
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/[controller]")]
 [Authorize]
+[Produces("application/json")]
+[Tags("Appointments")] // STEP 3: Group endpoints under "Appointments"
 public class AppointmentsController : ControllerBase
 {
     private readonly IAppointmentService _appointmentService;
@@ -26,9 +31,25 @@ public class AppointmentsController : ControllerBase
     /// <summary>
     /// Get all appointments (Admin/Manager only)
     /// </summary>
+    /// <remarks>
+    /// **Authorization Required:** Admin or Manager role
+    /// 
+    /// Retrieves a paginated list of all appointments in the system.
+    /// This endpoint is restricted to administrators and managers only.
+    /// 
+    /// **Important:** You must click the "Authorize" button at the top and enter your JWT token before testing this endpoint.
+    /// </remarks>
+    /// <param name="pageNumber">Page number (default: 1)</param>
+    /// <param name="pageSize">Number of items per page (default: 20)</param>
+    /// <returns>List of appointments with pagination metadata</returns>
+    /// <response code="200">Successfully retrieved appointments</response>
+    /// <response code="401">Unauthorized - User not authenticated</response>
+    /// <response code="403">Forbidden - User doesn't have required role</response>
     [HttpGet]
     [Authorize(Roles = "Admin,Manager")]
     [ProducesResponseType(typeof(IEnumerable<AppointmentResponseDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
     public async Task<IActionResult> GetAll([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 20)
     {
         _logger.LogInformation("Fetching all appointments");

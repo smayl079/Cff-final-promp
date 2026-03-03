@@ -5,9 +5,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CarRepairService.API.Controllers.v1;
 
+/// <summary>
+/// Service catalog management
+/// </summary>
 [ApiController]
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/[controller]")]
+[Produces("application/json")]
+[Tags("Service Catalog")] // STEP 3: Group endpoints
 public class ServicesController : ControllerBase
 {
     private readonly IServiceCatalogService _serviceCatalogService;
