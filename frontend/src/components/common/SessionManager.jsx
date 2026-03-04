@@ -1,6 +1,6 @@
 import React from 'react';
-import { useAuth } from '../context/AuthContext';
-import { useSessionTimeout } from '../hooks/useSessionTimeout';
+import { useAuth } from '../../context/AuthContext';
+import { useSessionTimeout } from '../../hooks/useSessionTimeout';
 import SessionTimeoutWarning from './SessionTimeoutWarning';
 
 const SessionManager = () => {

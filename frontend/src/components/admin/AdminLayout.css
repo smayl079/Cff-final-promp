@@ -1,13 +1,52 @@
+/* ================================
+   AUTOMOTIVE ADMIN PANEL - LAYOUT
+   ================================
+   Industrial dark theme with automotive accents
+   Professional workshop management interface
+*/
+
+:root {
+  /* Automotive Color Palette */
+  --admin-dark-bg: #1a1d23;
+  --admin-darker-bg: #14161a;
+  --admin-graphite: #2d3139;
+  --admin-accent-red: #e74c3c;
+  --admin-accent-orange: #f39c12;
+  --admin-metal-gray: #95a5a6;
+  --admin-white: #ffffff;
+  --admin-border: #3a3f47;
+  --admin-hover: #252930;
+  
+  /* Status Colors (Automotive inspired) */
+  --status-pending: #f39c12;
+  --status-progress: #3498db;
+  --status-completed: #27ae60;
+  --status-cancelled: #e74c3c;
+  
+  /* Spacing System (8px base) */
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-xxl: 3rem;
+}
+
 .admin-layout {
   display: flex;
   min-height: 100vh;
-  background-color: var(--color-light-gray);
+  background: linear-gradient(135deg, var(--admin-darker-bg) 0%, var(--admin-dark-bg) 100%);
+  position: relative;
+  overflow-x: hidden;
 }
 
 .admin-main {
   flex: 1;
   margin-left: 240px;
-  transition: margin-left 0.3s ease;
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .admin-main.collapsed {
@@ -15,8 +54,96 @@
 }
 
 .admin-content {
-  padding: 2rem;
+  padding: var(--space-xl);
   min-height: calc(100vh - 64px);
+  background-color: rgba(255, 255, 255, 0.02);
+  flex: 1;
+}
+
+/* Card-based layout system */
+.admin-card {
+  background: var(--admin-graphite);
+  border-radius: 8px;
+  padding: var(--space-lg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--admin-border);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(231, 76, 60, 0.2);
+}
+
+.admin-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--admin-border);
+}
+
+.admin-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--admin-white);
+  margin: 0;
+}
+
+/* Sticky action buttons */
+.sticky-actions {
+  position: fixed;
+  bottom: var(--space-xl);
+  right: var(--space-xl);
+  z-index: 100;
+  display: flex;
+  gap: var(--space-md);
+}
+
+.sticky-actions button {
+  padding: var(--space-md) var(--space-xl);
+  border-radius: 6px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.sticky-actions .btn-primary {
+  background-color: var(--admin-accent-red);
+  color: white;
+}
+
+.sticky-actions .btn-primary:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(231, 76, 60, 0.4);
+}
+
+.sticky-actions .btn-secondary {
+  background-color: var(--admin-metal-gray);
+  color: white;
+}
+
+.sticky-actions .btn-secondary:hover {
+  background-color: #7f8c8d;
+}
+
+/* Grid system for cards */
+.admin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .admin-main {
+    margin-left: 64px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -25,6 +152,44 @@
   }
   
   .admin-content {
-    padding: 1rem;
+    padding: var(--space-md);
+  }
+  
+  .admin-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .sticky-actions {
+    bottom: var(--space-md);
+    right: var(--space-md);
+    flex-direction: column;
+  }
+  
+  .sticky-actions button {
+    width: 100%;
   }
 }
+
+/* Loading state */
+.admin-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  color: var(--admin-metal-gray);
+}
+
+/* Empty state */
+.admin-empty {
+  text-align: center;
+  padding: var(--space-xxl);
+  color: var(--admin-metal-gray);
+}
+
+.admin-empty svg {
+  width: 64px;
+  height: 64px;
+  opacity: 0.5;
+  margin-bottom: var(--space-lg);
+}
+
