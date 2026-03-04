@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
+import { Calendar, ClipboardList, Users, DollarSign, Hourglass, CheckCircle, Wrench, PenTool, BarChart, FileText } from 'lucide-react';
 import styles from './Dashboard.module.css';
 
 const AdminDashboard = () => {
@@ -36,7 +37,7 @@ const AdminDashboard = () => {
       {/* Stats Grid */}
       <div className={styles.statsGrid}>
         <div className={styles.statCard}>
-          <div className={styles.statIcon}>📅</div>
+          <div className={styles.statIcon}><Calendar size={28} color="white" /></div>
           <div className={styles.statContent}>
             <h3>{stats.todayAppointments}</h3>
             <p>Today's Appointments</p>
@@ -44,7 +45,7 @@ const AdminDashboard = () => {
         </div>
 
         <div className={styles.statCard}>
-          <div className={styles.statIcon}>📋</div>
+          <div className={styles.statIcon}><ClipboardList size={28} color="white" /></div>
           <div className={styles.statContent}>
             <h3>{stats.totalAppointments}</h3>
             <p>Total Appointments</p>
@@ -52,7 +53,7 @@ const AdminDashboard = () => {
         </div>
 
         <div className={styles.statCard}>
-          <div className={styles.statIcon}>👥</div>
+          <div className={styles.statIcon}><Users size={28} color="white" /></div>
           <div className={styles.statContent}>
             <h3>{stats.totalCustomers}</h3>
             <p>Total Customers</p>
@@ -60,7 +61,7 @@ const AdminDashboard = () => {
         </div>
 
         <div className={styles.statCard}>
-          <div className={styles.statIcon}>💰</div>
+          <div className={styles.statIcon}><DollarSign size={28} color="white" /></div>
           <div className={styles.statContent}>
             <h3>${stats.totalRevenue.toLocaleString()}</h3>
             <p>Total Revenue</p>
@@ -68,7 +69,7 @@ const AdminDashboard = () => {
         </div>
 
         <div className={styles.statCard}>
-          <div className={styles.statIcon}>⏳</div>
+          <div className={styles.statIcon}><Hourglass size={28} color="white" /></div>
           <div className={styles.statContent}>
             <h3>{stats.pendingAppointments}</h3>
             <p>Pending Appointments</p>
@@ -76,7 +77,7 @@ const AdminDashboard = () => {
         </div>
 
         <div className={styles.statCard}>
-          <div className={styles.statIcon}>✅</div>
+          <div className={styles.statIcon}><CheckCircle size={28} color="white" /></div>
           <div className={styles.statContent}>
             <h3>{stats.completedAppointments}</h3>
             <p>Completed Services</p>
@@ -89,27 +90,27 @@ const AdminDashboard = () => {
         <h2>Quick Actions</h2>
         <div className={styles.actionsGrid}>
           <button className={styles.actionBtn}>
-            <span>📅</span>
+            <span><Calendar size={20} /></span>
             <span>View All Appointments</span>
           </button>
           <button className={styles.actionBtn}>
-            <span>👥</span>
+            <span><Users size={20} /></span>
             <span>Manage Customers</span>
           </button>
           <button className={styles.actionBtn}>
-            <span>🔧</span>
+            <span><Wrench size={20} /></span>
             <span>Manage Services</span>
           </button>
           <button className={styles.actionBtn}>
-            <span>👨‍🔧</span>
+            <span><PenTool size={20} /></span>
             <span>Manage Mechanics</span>
           </button>
           <button className={styles.actionBtn}>
-            <span>💵</span>
+            <span><FileText size={20} /></span>
             <span>View Invoices</span>
           </button>
           <button className={styles.actionBtn}>
-            <span>📊</span>
+            <span><BarChart size={20} /></span>
             <span>Generate Reports</span>
           </button>
         </div>

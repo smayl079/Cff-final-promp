@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../context/AuthContext';
 import { useNotification } from '../../context/NotificationContext';
-import { Car, Calendar, Wrench, Phone, LogOut } from 'lucide-react';
+import { Car, Calendar, Wrench, Phone, LogOut, Clock, Timer } from 'lucide-react';
 import './MechanicDashboard.css';
 
 const MechanicDashboard = () => {
@@ -71,7 +71,7 @@ const MechanicDashboard = () => {
         <div className="topbar-content">
           <div className="topbar-left">
             <h2 className="mechanic-name">{user?.firstName || 'Mechanic'}</h2>
-            <span className="mechanic-badge">🔧 {user?.role || 'Mechanic'}</span>
+            <span className="mechanic-badge"><Wrench size={16} style={{marginRight:'4px'}} /> {user?.role || 'Mechanic'}</span>
           </div>
           <button 
             className="logout-btn"
@@ -115,7 +115,7 @@ const MechanicDashboard = () => {
           >
             <div className="job-header">
               <span className="job-id">{job.id}</span>
-              <span className="job-time">⏰ {job.time}</span>
+              <span className="job-time" style={{display:'flex', alignItems:'center', gap:'4px'}}><Clock size={16} /> {job.time}</span>
             </div>
 
             <div className="job-info">
@@ -138,7 +138,7 @@ const MechanicDashboard = () => {
                 <Wrench size={24} />
                 <div>
                   <strong>{job.service}</strong>
-                  <span className="duration">⏱️ Est. {job.duration}</span>
+                  <span className="duration" style={{display:'flex', alignItems:'center', gap:'4px'}}><Timer size={14} /> Est. {job.duration}</span>      
                 </div>
               </div>
             </div>

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useLanguage } from '../../context/LanguageContext';
 import { useAuth } from '../../context/AuthContext';
 import { useNotification } from '../../context/NotificationContext';
-import { Menu, X, Globe, LogIn, LogOut, User } from 'lucide-react';
+import { Menu, X, Globe, LogIn, LogOut, User, Wrench } from 'lucide-react';
 import './Header.css';
 
 const Header = () => {
@@ -32,7 +32,7 @@ const Header = () => {
         <div className="header-content">
           {/* Logo */}
           <Link to="/" className="logo">
-            <div className="logo-icon">🔧</div>
+            <div className="logo-icon"><Wrench size={24} color="var(--color-primary)" /></div>
             <span className="logo-text">AutoCare</span>
           </Link>
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Star, Facebook, Instagram, Twitter, Youtube } from 'lucide-react';
+import { Star, Facebook, Instagram, Twitter, Youtube, Wrench } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
 import './Footer.css';
@@ -15,7 +15,7 @@ const Footer = () => {
         <div className="footer-content">
           <div className="footer-column">
             <div className="footer-logo">
-              <div className="logo-icon">🔧</div>
+              <div className="logo-icon"><Wrench size={24} color="var(--color-primary)" /></div>
               <span>AutoCare</span>
             </div>
             <p className="footer-tagline">{t('footer.companyInfo')}</p>

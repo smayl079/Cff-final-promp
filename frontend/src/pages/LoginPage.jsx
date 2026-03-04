@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import { useNotification } from '../context/NotificationContext';
-import { Eye, EyeOff, Lock, Mail, ChevronDown, CheckCircle, AlertCircle, Loader } from 'lucide-react';
+import { Eye, EyeOff, Lock, Mail, ChevronDown, CheckCircle, AlertCircle, Loader, Star, Wrench } from 'lucide-react';
 import './LoginPage.css';
 
 const LoginPage = () => {
@@ -162,7 +162,7 @@ const LoginPage = () => {
         <div className="brand-overlay"></div>
         <div className="brand-content">
           <div className="brand-logo">
-            <div className="logo-icon">🔧</div>
+            <div className="logo-icon"><Wrench size={32} /></div>
             <h1 className="logo-text">AutoFix Pro</h1>
           </div>
           
@@ -184,7 +184,13 @@ const LoginPage = () => {
           </div>
 
           <div className="testimonial">
-            <div className="testimonial-stars">⭐⭐⭐⭐⭐</div>
+            <div className="testimonial-stars" style={{ display: 'flex', gap: '4px', justifyContent: 'center', marginBottom: '1rem', color: '#fbbf24' }}>
+              <Star fill="currentColor" size={20} />
+              <Star fill="currentColor" size={20} />
+              <Star fill="currentColor" size={20} />
+              <Star fill="currentColor" size={20} />
+              <Star fill="currentColor" size={20} />
+            </div>
             <p className="testimonial-text">"{t('auth.testimonial')}"</p>
             <p className="testimonial-author">- {t('auth.testimonialAuthor')}</p>
           </div>
