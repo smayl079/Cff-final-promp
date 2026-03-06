@@ -171,6 +171,17 @@ builder.Services.AddApiVersioning(options =>
     options.ReportApiVersions = true;
 });
 
+builder.Services.AddVersionedApiExplorer(options =>
+{
+    // add the versioned api explorer, which also adds IApiVersionDescriptionProvider service
+    // note: the specified format code will format the version as "'v'major[.minor][-status]"
+    options.GroupNameFormat = "'v'VVV";
+
+    // note: this option is only necessary when versioning by url segment. the SubstitutionFormat
+    // can also be used to control the format of the API version in route templates
+    options.SubstituteApiVersionInUrl = true;
+});
+
 // Register Application and Infrastructure services
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
@@ -178,33 +189,30 @@ builder.Services.AddInfrastructureServices(builder.Configuration);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
+app.UseSwagger();
     
-    // STEP 2: Enhanced Swagger UI Configuration
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Car Repair Service API V1");
-        c.RoutePrefix = "swagger"; // Access via: https://localhost:PORT/swagger
-        
-        // UI Enhancements for Demo
-        c.DefaultModelsExpandDepth(2);
-        c.DefaultModelRendering(Swashbuckle.AspNetCore.SwaggerUI.ModelRendering.Model);
-        c.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None);
-        c.EnableDeepLinking();
-        c.DisplayRequestDuration();
-        c.EnableFilter();
-        c.ShowExtensions();
-        
-        // Persist authorization
-        c.EnablePersistAuthorization();
-        
-        // Custom CSS for professional look (optional)
-        c.DocumentTitle = "Car Repair Service API Documentation";
-        c.InjectStylesheet("/swagger-ui/custom.css"); // You can add custom CSS later
-    });
-}
+// STEP 2: Enhanced Swagger UI Configuration
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Car Repair Service API V1");
+    // Ensure the route prefix matches the launchUrl in launchSettings.json
+    c.RoutePrefix = "swagger"; // Access via: https://localhost:PORT/swagger
+    
+    // UI Enhancements for Demo
+    c.DefaultModelsExpandDepth(2);
+    c.DefaultModelRendering(Swashbuckle.AspNetCore.SwaggerUI.ModelRendering.Model);
+    c.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None);
+    c.EnableDeepLinking();
+    c.DisplayRequestDuration();
+    c.EnableFilter();
+    c.ShowExtensions();
+    
+    // Persist authorization
+    c.EnablePersistAuthorization();
+    
+    // Custom CSS for professional look (optional)
+    c.DocumentTitle = "Car Repair Service API Documentation";
+});
 
 app.UseHttpsRedirection();
 
