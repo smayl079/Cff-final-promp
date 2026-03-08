@@ -1,50 +1,66 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Calendar, DollarSign, Star, Clock } from 'lucide-react';
+import { Calendar, DollarSign, Star, Clock, Users, Wrench } from 'lucide-react';
+import axiosInstance from '../../api/axios.config';
+import { ENDPOINTS } from '../../api/endpoints';
 import './AdminDashboard.css';
 
 const AdminDashboard = () => {
   const { t } = useTranslation();
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const response = await axiosInstance.get(ENDPOINTS.ADMIN_DASHBOARD);
+        setData(response.data);
+      } catch (error) {
+        console.error("Failed to fetch admin stats", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchStats();
+  }, []);
+
+  if (loading) return <div style={{ padding: '2rem' }}>Loading dashboard...</div>;
 
   const stats = [
     {
       icon: <Clock size={32} />,
-      value: '63',
-      label: t('admin.pendingAppts'),
+      value: data?.totalBookings || '0',
+      label: 'Total Bookings',
       change: '+5%',
       positive: true
     },
     {
-      icon: <Calendar size={32} />,
-      value: '12',
-      label: t('admin.todayAppts'),
-      change: t('admin.today'),
+      icon: <Wrench size={32} />,
+      value: data?.totalServices || '0',
+      label: 'Total Services',
+      change: 'Active',
       positive: true
     },
     {
-      icon: <DollarSign size={32} />,
-      value: '$12,450',
-      label: t('admin.revenue') + ' ' + t('admin.thisMonth'),
+      icon: <Users size={32} />,
+      value: data?.totalCustomers || '0',
+      label: 'Total Customers',
       change: '+12%',
       positive: true
     },
     {
       icon: <Star size={32} />,
-      value: '4.8',
-      label: t('admin.avgRating'),
-      change: '234 reviews',
-      positive: true
+      value: data?.unreadMessages || '0',
+      label: 'Unread Messages',
+      change: 'Check inbox',
+      positive: data?.unreadMessages === 0
     }
   ];
 
-  const recentAppointments = [
-    { id: '#A00152', customer: 'John Doe', service: 'Oil Change', status: 'pending', date: '2026-03-02' },
-    { id: '#A00153', customer: 'Jane Smith', service: 'Brake Repair', status: 'completed', date: '2026-03-02' },
-    { id: '#A00154', customer: 'Mike Johnson', service: 'Engine Diagnostics', status: 'in-progress', date: '2026-03-03' }
-  ];
+  const recentAppointments = data?.recentBookings || [];
 
   const getStatusClass = (status) => {
-    switch (status) {
+    switch (status?.toLowerCase()) {
       case 'completed': return 'badge-success';
       case 'pending': return 'badge-warning';
       case 'in-progress': return 'badge-info';
@@ -114,12 +130,12 @@ const AdminDashboard = () => {
               </tr>
             </thead>
             <tbody>
-              {recentAppointments.map((apt) => (
+              {recentAppointments && recentAppointments.length > 0 ? recentAppointments.map((apt) => (
                 <tr key={apt.id}>
-                  <td className="id-cell">{apt.id}</td>
-                  <td>{apt.customer}</td>
-                  <td>{apt.service}</td>
-                  <td>{apt.date}</td>
+                  <td className="id-cell">{apt.id?.substring(0,6) || apt.id}</td>
+                  <td>{apt.customerName || apt.customer}</td>
+                  <td>{apt.serviceId ? 'Service ' + apt.serviceId.substring(0,4) : apt.service}</td>
+                  <td>{apt.date ? new Date(apt.date).toLocaleDateString() : 'N/A'}</td>
                   <td>
                     <span className={`badge ${getStatusClass(apt.status)}`}>
                       {apt.status}
@@ -132,7 +148,11 @@ const AdminDashboard = () => {
                     </div>
                   </td>
                 </tr>
-              ))}
+              )) : (
+                <tr>
+                  <td colSpan="6" style={{textAlign: 'center', padding: '1rem'}}>No recent appointments found.</td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>

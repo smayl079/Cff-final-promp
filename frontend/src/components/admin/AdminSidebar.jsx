@@ -24,28 +24,10 @@ const AdminSidebar = ({ isCollapsed, onToggle }) => {
 
   const menuItems = [
     { path: '/admin', icon: <LayoutDashboard size={20} />, label: t('admin.dashboard'), exact: true },
-    {
-      icon: <Users size={20} />,
-      label: t('admin.users'),
-      submenu: [
-        { path: '/admin/customers', label: t('admin.customers') },
-        { path: '/admin/mechanics', label: t('admin.mechanics') },
-        { path: '/admin/staff', label: t('admin.staff') }
-      ]
-    },
-    { path: '/admin/vehicles', icon: <Car size={20} />, label: t('admin.vehicles') },
-    { path: '/admin/appointments', icon: <Calendar size={20} />, label: t('admin.appointments') },
-    {
-      icon: <Wrench size={20} />,
-      label: t('admin.services'),
-      submenu: [
-        { path: '/admin/service-categories', label: t('admin.serviceCategories') },
-        { path: '/admin/service-items', label: t('admin.serviceItems') }
-      ]
-    },
-    { path: '/admin/payments', icon: <DollarSign size={20} />, label: t('admin.payments') },
-    { path: '/admin/reports', icon: <BarChart3 size={20} />, label: t('admin.reports') },
-    { path: '/admin/communications', icon: <MessageSquare size={20} />, label: t('admin.communications') },
+    { path: '/admin/services', icon: <Wrench size={20} />, label: t('admin.services') },
+    { path: '/admin/bookings', icon: <Calendar size={20} />, label: 'Bookings' },
+    { path: '/admin/employees', icon: <Users size={20} />, label: 'Employees' },
+    { path: '/admin/messages', icon: <MessageSquare size={20} />, label: 'Messages' },
     { path: '/admin/settings', icon: <Settings size={20} />, label: t('admin.settings') }
   ];
 

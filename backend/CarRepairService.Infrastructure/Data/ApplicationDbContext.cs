@@ -23,6 +23,8 @@ public class ApplicationDbContext : DbContext
     public DbSet<InvoiceItem> InvoiceItems => Set<InvoiceItem>();
     public DbSet<Review> Reviews => Set<Review>();
     public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
+    public DbSet<ContactMessage> ContactMessages => Set<ContactMessage>();
+    public DbSet<CompanySettings> CompanySettings => Set<CompanySettings>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -41,6 +43,8 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<Mechanic>().HasQueryFilter(e => !e.IsDeleted);
         modelBuilder.Entity<Invoice>().HasQueryFilter(e => !e.IsDeleted);
         modelBuilder.Entity<Review>().HasQueryFilter(e => !e.IsDeleted);
+        modelBuilder.Entity<ContactMessage>().HasQueryFilter(e => !e.IsDeleted);
+        modelBuilder.Entity<CompanySettings>().HasQueryFilter(e => !e.IsDeleted);
     }
 
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

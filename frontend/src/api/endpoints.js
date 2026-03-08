@@ -38,4 +38,10 @@ export const ENDPOINTS = {
   // Mechanics
   MECHANICS: `/v1/mechanics`,
   MECHANIC_BY_ID: (id) => `/v1/mechanics/${id}`,
+
+  // Admin
+  ADMIN_DASHBOARD: `/v1/admin/dashboard/stats`,
+  ADMIN_MESSAGES: `/v1/admin/messages`,
+  ADMIN_MESSAGES_READ: (id) => `/v1/admin/messages/${id}/read`,
+  ADMIN_SETTINGS: `/v1/admin/settings`,
 };

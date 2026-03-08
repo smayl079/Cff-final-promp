@@ -7,6 +7,11 @@ import LoginPage from '../pages/LoginPage';
 import Register from '../pages/auth/Register';
 import AdminLayout from '../components/admin/AdminLayout';
 import AdminDashboard from '../components/admin/AdminDashboard';
+import ServicesManagement from '../components/admin/ServicesManagement';
+import BookingManagement from '../components/admin/BookingManagement';
+import EmployeesManagement from '../components/admin/EmployeesManagement';
+import MessagesManagement from '../components/admin/MessagesManagement';
+import SettingsManagement from '../components/admin/SettingsManagement';
 import MechanicDashboard from '../components/mechanic/MechanicDashboard';
 import MainLayout from '../components/layout/MainLayout';
 import CustomerDashboard from '../pages/customer/Dashboard';
@@ -96,27 +101,21 @@ const AppRoutes = () => {
         }
       >
         <Route index element={<AdminDashboard />} />
-        <Route path="customers" element={<AdminDashboard />} />
-        <Route path="mechanics" element={<AdminDashboard />} />
-        <Route path="staff" element={<AdminDashboard />} />
-        <Route path="vehicles" element={<AdminDashboard />} />
-        <Route path="appointments" element={<AdminDashboard />} />
-        <Route path="service-categories" element={<AdminDashboard />} />
-        <Route path="service-items" element={<AdminDashboard />} />
-        <Route path="payments" element={<AdminDashboard />} />
-        <Route path="reports" element={<AdminDashboard />} />
-        <Route path="communications" element={<AdminDashboard />} />
-        <Route path="settings" element={<AdminDashboard />} />
+        <Route path="services" element={<ServicesManagement />} />
+        <Route path="bookings" element={<BookingManagement />} />
+        <Route path="employees" element={<EmployeesManagement />} />
+        <Route path="messages" element={<MessagesManagement />} />
+        <Route path="settings" element={<SettingsManagement />} />
       </Route>
 
       {/* Mechanic Routes - Protected */}
-      <Route 
-        path="/mechanic" 
+      <Route
+        path="/mechanic"
         element={
           <ProtectedRoute allowedRoles={['mechanic']}>
             <MechanicDashboard />
           </ProtectedRoute>
-        } 
+        }
       />
 
       {/* 404 Not Found */}
