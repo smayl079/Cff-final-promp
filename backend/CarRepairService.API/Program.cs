@@ -233,7 +233,9 @@ using (var scope = app.Services.CreateScope())
     {
         // Initialize database and seed data
         Log.Information("Starting database initialization...");
-        // Add your seeding logic here if needed
+        var context = services.GetRequiredService<CarRepairService.Infrastructure.Data.ApplicationDbContext>();
+        await CarRepairService.Infrastructure.Data.DatabaseSeeder.SeedAsync(context);
+        Log.Information("Database initialized and seeded successfully.");
     }
     catch (Exception ex)
     {

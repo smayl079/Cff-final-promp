@@ -12,13 +12,28 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     const fetchStats = async () => {
+      // Backend işləsə də, işləməsə də həmişə bu fake data görünəcək
+      const fakeData = {
+        totalBookings: 145,
+        totalServices: 24,
+        totalCustomers: 89,
+        unreadMessages: 12,
+        recentBookings: [
+          { id: "BOK-001", customerName: "Əli Həsənov", service: "Mühərrik yağı dəyişimi", date: "2026-03-08T10:00:00", status: "completed" },
+          { id: "BOK-002", customerName: "Vəli Məmmədov", service: "Əyləc sistemi yoxlanışı", date: "2026-03-09T14:30:00", status: "pending" },
+          { id: "BOK-003", customerName: "Leyla Əliyeva", service: "Kompüter diaqnostikası", date: "2026-03-10T09:15:00", status: "in-progress" },
+          { id: "BOK-004", customerName: "Nigar Hüseynova", service: "Təkər təmiri", date: "2026-03-11T16:00:00", status: "pending" },
+          { id: "BOK-005", customerName: "Samir Quliyev", service: "Kondisioner qazı vurulması", date: "2026-03-11T11:00:00", status: "completed" }
+        ]
+      };
+
       try {
-        const response = await axiosInstance.get(ENDPOINTS.ADMIN_DASHBOARD);
-        setData(response.data);
+        // API-yə sorğu göndəririk, lakin nəticədən asılı olmayaraq fake datanı təyin edirik
+        await axiosInstance.get(ENDPOINTS.ADMIN_DASHBOARD);    
+        setData(fakeData);
       } catch (error) {
         console.error("Failed to fetch admin stats", error);
-      } finally {
-        setLoading(false);
+        setData(fakeData); // Xəta olsa belə fake datanı göstər
       }
     };
     fetchStats();

@@ -22,6 +22,26 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (credentials) => {
+    // HARDCODED ADMIN BYPASS
+    if (credentials.email === 'admin@gmail.com' && credentials.password === 'admin123!') {
+      const adminUser = {
+        id: 'admin-bypass-001',
+        email: 'admin@gmail.com',
+        role: 'admin',
+        firstName: 'Admin',
+        lastName: 'Aka'
+      };
+      
+      localStorage.setItem('accessToken', 'mock-admin-token');
+      localStorage.setItem('refreshToken', 'mock-admin-refresh-token');
+      localStorage.setItem('user', JSON.stringify(adminUser));
+      
+      setUser(adminUser);
+      setIsAuthenticated(true);
+      
+      return { user: adminUser, accessToken: 'mock-admin-token' };
+    }
+
     try {
       const response = await authService.login(credentials);
       setUser(response.user);
