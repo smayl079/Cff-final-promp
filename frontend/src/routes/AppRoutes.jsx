@@ -5,6 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import HomePage from '../pages/HomePage';
 import LoginPage from '../pages/LoginPage';
 import Register from '../pages/auth/Register';
+import ServicesPage from '../pages/ServicesPage';
 import AdminLayout from '../components/admin/AdminLayout';
 import AdminDashboard from '../components/admin/AdminDashboard';
 import ServicesManagement from '../components/admin/ServicesManagement';
@@ -71,7 +72,7 @@ const AppRoutes = () => {
       <Route path="/auth/login" element={<LoginPage />} />
       <Route path="/register" element={<Register />} />
       <Route path="/auth/register" element={<Register />} />
-      <Route path="/services" element={<HomePage />} />
+      <Route path="/services" element={<ServicesPage />} />
       <Route path="/about" element={<HomePage />} />
       <Route path="/contact" element={<HomePage />} />
       <Route path="/booking" element={<HomePage />} />
