@@ -1,4 +1,6 @@
 import React from 'react';
+import Header from '../components/public/Header';
+import Footer from '../components/public/Footer';
 import './ContactPage.css';
 
 const icons = {
@@ -16,8 +18,10 @@ export default function ContactPage() {
   ];
 
   return (
-    <div className="contact-page">
-      {/* Contact Hero */}
+    <>
+      <Header />
+      <div className="contact-page">
+        {/* Contact Hero */}
       <section className="contact-hero">
         <div className="contact-hero-bg"></div>
         <div className="contact-hero-content">
@@ -163,5 +167,7 @@ export default function ContactPage() {
         </div>
       </section>
     </div>
+      <Footer />
+    </>
   );
 }

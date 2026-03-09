@@ -27,6 +27,7 @@ const AdminSidebar = ({ isCollapsed, onToggle }) => {
     { path: '/admin/services', icon: <Wrench size={20} />, label: t('admin.services') },
     { path: '/admin/bookings', icon: <Calendar size={20} />, label: 'Bookings' },
     { path: '/admin/employees', icon: <Users size={20} />, label: 'Employees' },
+    { path: '/admin/experts', icon: <Users size={20} />, label: 'About Experts' },
     { path: '/admin/messages', icon: <MessageSquare size={20} />, label: 'Messages' },
     { path: '/admin/settings', icon: <Settings size={20} />, label: t('admin.settings') }
   ];

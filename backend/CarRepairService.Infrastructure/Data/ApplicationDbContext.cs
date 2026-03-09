@@ -25,6 +25,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
     public DbSet<ContactMessage> ContactMessages => Set<ContactMessage>();
     public DbSet<CompanySettings> CompanySettings => Set<CompanySettings>();
+    public DbSet<Expert> Experts => Set<Expert>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -45,6 +46,7 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<Review>().HasQueryFilter(e => !e.IsDeleted);
         modelBuilder.Entity<ContactMessage>().HasQueryFilter(e => !e.IsDeleted);
         modelBuilder.Entity<CompanySettings>().HasQueryFilter(e => !e.IsDeleted);
+        modelBuilder.Entity<Expert>().HasQueryFilter(e => !e.IsDeleted);
     }
 
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

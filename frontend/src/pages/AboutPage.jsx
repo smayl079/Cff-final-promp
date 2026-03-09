@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../components/public/Header';
 import Footer from '../components/public/Footer';
 import './AboutPage.css';
@@ -17,11 +17,20 @@ export default function AboutPage() {
     { title: 'Customer Respect', desc: 'Your time is valuable. We focus on getting the job done right, efficiently, and keeping you informed.' },
   ];
 
-  const team = [
-    { name: 'Michael Rodriguez', role: 'Lead Diagnostic Technician', exp: '18 Years Experience' },
-    { name: 'Sarah Jenkins', role: 'Service Manager', exp: '12 Years Experience' },
-    { name: 'David Chen', role: 'Specialized Engine Mechanic', exp: '10 Years Experience' },
+  const defaultTeam = [
+    { id: 1, name: 'Michael Rodriguez', role: 'Lead Diagnostic Technician', exp: '18 Years Experience' },
+    { id: 2, name: 'Sarah Jenkins', role: 'Service Manager', exp: '12 Years Experience' },
+    { id: 3, name: 'David Chen', role: 'Specialized Engine Mechanic', exp: '10 Years Experience' },
   ];
+
+  const [team, setTeam] = useState(defaultTeam);
+
+  useEffect(() => {
+    const storedExperts = localStorage.getItem('aboutExperts');
+    if (storedExperts) {
+      setTeam(JSON.parse(storedExperts));
+    }
+  }, []);
 
   return (
     <>
@@ -100,9 +109,17 @@ export default function AboutPage() {
 
           <div className="ap-team-grid">
             {team.map((member, idx) => (
-              <div key={idx} className="ap-team-member">
-                <div className="ap-team-img-placeholder">
-                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+              <div key={member.id || idx} className="ap-team-member">
+                <div 
+                  className="ap-team-img-placeholder"
+                  style={member.image ? {
+                    backgroundImage: `url(${member.image})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundColor: 'transparent'
+                  } : {}}
+                >
+                  {!member.image && <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>}
                 </div>
                 <h3>{member.name}</h3>
                 <p className="ap-team-role">{member.role}</p>

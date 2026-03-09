@@ -13,6 +13,7 @@ import AdminDashboard from '../components/admin/AdminDashboard';
 import ServicesManagement from '../components/admin/ServicesManagement';
 import BookingManagement from '../components/admin/BookingManagement';
 import EmployeesManagement from '../components/admin/EmployeesManagement';
+import ExpertsManagement from '../components/admin/ExpertsManagement';
 import MessagesManagement from '../components/admin/MessagesManagement';
 import SettingsManagement from '../components/admin/SettingsManagement';
 import MechanicDashboard from '../components/mechanic/MechanicDashboard';
@@ -107,6 +108,7 @@ const AppRoutes = () => {
         <Route path="services" element={<ServicesManagement />} />
         <Route path="bookings" element={<BookingManagement />} />
         <Route path="employees" element={<EmployeesManagement />} />
+        <Route path="experts" element={<ExpertsManagement />} />
         <Route path="messages" element={<MessagesManagement />} />
         <Route path="settings" element={<SettingsManagement />} />
       </Route>

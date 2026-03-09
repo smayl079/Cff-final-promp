@@ -44,4 +44,8 @@ export const ENDPOINTS = {
   ADMIN_MESSAGES: `/v1/admin/messages`,
   ADMIN_MESSAGES_READ: (id) => `/v1/admin/messages/${id}/read`,
   ADMIN_SETTINGS: `/v1/admin/settings`,
+
+  // Experts
+  EXPERTS: `/v1/experts`,
+  EXPERT_BY_ID: (id) => `/v1/experts/${id}`,
 };

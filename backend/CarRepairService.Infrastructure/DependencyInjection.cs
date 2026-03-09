@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using CarRepairService.Infrastructure.Data;
+using CarRepairService.Application.Interfaces;
+using CarRepairService.Infrastructure.Services;
 
 namespace CarRepairService.Infrastructure;
 
@@ -21,6 +23,8 @@ public static class DependencyInjection
         // services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         // services.AddScoped<IAppointmentRepository, AppointmentRepository>();
         // services.AddScoped<IUnitOfWork, UnitOfWork>();
+        
+        services.AddScoped<IExpertService, ExpertService>();
 
         return services;
     }
