@@ -117,8 +117,8 @@ const ExpertsManagement = () => {
                             {experts.length > 0 ? experts.map(exp => (
                                 <tr key={exp.id}>
                                     <td>
-                                        {exp.image ? (
-                                            <img src={exp.image} alt={exp.name} style={{ width: '50px', height: '50px', borderRadius: '50%', objectFit: 'cover' }} />
+                                        {exp.imageUrl || exp.image ? (
+                                            <img src={exp.imageUrl || exp.image} alt={exp.name} style={{ width: '50px', height: '50px', borderRadius: '50%', objectFit: 'cover' }} />
                                         ) : (
                                             <div style={{ width: '50px', height: '50px', borderRadius: '50%', backgroundColor: '#e2e8f0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                                 <ImageIcon size={20} color="#94a3b8" />
@@ -127,7 +127,7 @@ const ExpertsManagement = () => {
                                     </td>
                                     <td><strong>{exp.name}</strong></td>
                                     <td>{exp.role}</td>
-                                    <td>{exp.exp}</td>
+                                    <td>{exp.experience || exp.exp}</td>
                                     <td>
                                         <div className="action-buttons">
                                             <button className="btn-icon" title="Edit" onClick={() => handleOpenModal(exp)}>

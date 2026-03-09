@@ -25,7 +25,8 @@ namespace CarRepairService.Infrastructure.Data
                     Address = "123 Auto Avenue, Car City, NY 10001",
                     WorkingHours = "Mon-Sat: 8AM - 6PM",
                     FacebookUrl = "https://facebook.com/autocare",
-                    InstagramUrl = "https://instagram.com/autocare"
+                    InstagramUrl = "https://instagram.com/autocare",
+                    TwitterUrl = ""
                 });
             }
 
@@ -34,8 +35,8 @@ namespace CarRepairService.Infrastructure.Data
             {
                 context.ContactMessages.AddRange(new List<ContactMessage>
                 {
-                    new ContactMessage { Name = "John Smith", Email = "john@example.com", Subject = "Engine Noise", Message = "My car makes a weird noise when I start it.", IsRead = false, CreatedAt = DateTime.UtcNow.AddDays(-1) },
-                    new ContactMessage { Name = "Mary Cole", Email = "mary@example.com", Subject = "Pricing inquiry", Message = "How much for a standard oil change?", IsRead = true, CreatedAt = DateTime.UtcNow.AddDays(-2) }
+                    new ContactMessage { Name = "John Smith", Email = "john@example.com", Phone = "", Subject = "Engine Noise", Message = "My car makes a weird noise when I start it.", IsRead = false, CreatedAt = DateTime.UtcNow.AddDays(-1) },
+                    new ContactMessage { Name = "Mary Cole", Email = "mary@example.com", Phone = "", Subject = "Pricing inquiry", Message = "How much for a standard oil change?", IsRead = true, CreatedAt = DateTime.UtcNow.AddDays(-2) }
                 });
             }
 

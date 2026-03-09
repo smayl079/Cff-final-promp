@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/public/Header';
 import Footer from '../components/public/Footer';
+import axiosInstance from '../api/axios.config';
+import { ENDPOINTS } from '../api/endpoints';
 import './AboutPage.css';
 
 export default function AboutPage() {
@@ -26,10 +28,34 @@ export default function AboutPage() {
   const [team, setTeam] = useState(defaultTeam);
 
   useEffect(() => {
-    const storedExperts = localStorage.getItem('aboutExperts');
-    if (storedExperts) {
-      setTeam(JSON.parse(storedExperts));
-    }
+    const fetchExperts = async () => {
+      try {
+        const response = await axiosInstance.get(ENDPOINTS.EXPERTS);
+        const expertsData = response.data?.data || response.data || [];
+        if (expertsData.length > 0) {
+          // Map backend DTO property names to matched variable styles in frontend
+          // (e.g. experience -> exp, imageUrl -> image) 
+          const mappedData = expertsData.map(expert => ({
+            id: expert.id,
+            name: expert.name,
+            role: expert.role,
+            exp: expert.experience,
+            image: expert.imageUrl
+          }));
+          setTeam(mappedData);
+        } else {
+            // Load local storage as a fallback just in case
+            const storedExperts = localStorage.getItem('aboutExperts');
+            if (storedExperts) setTeam(JSON.parse(storedExperts));
+        }
+      } catch (error) {
+        console.error('Error fetching experts from backend:', error);
+        const storedExperts = localStorage.getItem('aboutExperts');
+        if (storedExperts) setTeam(JSON.parse(storedExperts));
+      }
+    };
+
+    fetchExperts();
   }, []);
 
   return (
