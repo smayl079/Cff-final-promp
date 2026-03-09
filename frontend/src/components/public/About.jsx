@@ -72,6 +72,7 @@ const About = () => {
             </button>
           </div>
           
+        </div>
       </div>
     </section>
   );
