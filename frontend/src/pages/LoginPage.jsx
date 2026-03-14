@@ -69,10 +69,10 @@ const LoginPage = () => {
       case 'email':
         if (!value) {
           newErrors.email = t('auth.errors.emailRequired');
-        } else if (!validateEmail(value)) {
-          newErrors.email = t('auth.errors.emailInvalid');
-        } else {
+        } else if (validateEmail(value)) {
           delete newErrors.email;
+        } else {
+          newErrors.email = t('auth.errors.emailInvalid');
         }
         break;
       case 'password':
