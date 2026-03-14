@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
@@ -310,11 +310,11 @@ const LoginPage = () => {
                   onChange={handleChange}
                   disabled={isLoading}
                 />
-                <span className="checkbox-text">{t('auth.rememberMe')}</span>
+                <span className="checkbox-text">{t('auth.rememberMeFor30Days', { defaultValue: t('auth.rememberMe') })}</span>
               </label>
-              <a href="/forgot-password" className="forgot-link">
+              <Link to="/auth/forgot-password" className="forgot-link">
                 {t('auth.forgotPassword')}
-              </a>
+              </Link>
             </div>
 
             {/* Submit Button */}
@@ -335,7 +335,8 @@ const LoginPage = () => {
 
             {/* Security Badge */}
             <div className="security-badge">
-              🔒 {t('auth.secureLogin')}
+                  aria-label={showPassword ? t('auth.hidePassword') : t('auth.showPassword')}
+                  aria-pressed={showPassword}
             </div>
 
             {/* Register Link */}
