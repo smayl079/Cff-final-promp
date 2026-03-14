@@ -303,10 +303,14 @@
   top: 50%;
   left: 14px;
   transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 20px;
   height: 20px;
   color: var(--color-text-light);
   pointer-events: none;
+  z-index: 1;
 }
 
 .form-input {
@@ -314,11 +318,13 @@
   height: 52px;
   padding: 0 46px 0 46px;
   border: none;
+  border-radius: 0;
   font-size: 15px;
   line-height: 1.4;
   color: var(--color-text);
   background: transparent;
   outline: none;
+  box-shadow: none;
   appearance: none;
   -webkit-appearance: none;
 }
@@ -376,6 +382,10 @@
   width: 20px;
   height: 20px;
   color: var(--color-success);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  line-height: 0;
 }
 
 .error-message {

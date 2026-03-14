@@ -239,7 +239,7 @@ const LoginPage = () => {
               <label htmlFor="email" className="form-label">
                 {t('auth.email')}
               </label>
-              <div className={`input-wrapper ${errors.email && touchedFields.email ? 'error' : ''} ${formData.email && !errors.email ? 'success' : ''}`}>
+              <div className={`input-wrapper ${errors.email && touchedFields.email ? 'error' : ''} ${touchedFields.email && formData.email && !errors.email ? 'success' : ''}`}>
                 <Mail size={20} className="input-icon" />
                 <input
                   type="email"
@@ -253,7 +253,7 @@ const LoginPage = () => {
                   autoFocus
                   disabled={isLoading}
                 />
-                {formData.email && !errors.email && (
+                {touchedFields.email && formData.email && !errors.email && (
                   <CheckCircle size={20} className="input-success-icon" />
                 )}
               </div>
