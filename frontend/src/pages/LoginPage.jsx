@@ -287,7 +287,11 @@ const LoginPage = () => {
                   type="button"
                   className="password-toggle"
                   onClick={() => setShowPassword(!showPassword)}
-                  tabIndex={-1}
+                  aria-label={showPassword
+                    ? t('auth.hidePassword', { defaultValue: 'Hide password' })
+                    : t('auth.showPassword', { defaultValue: 'Show password' })}
+                  aria-pressed={showPassword}
+                  disabled={isLoading}
                 >
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
@@ -335,8 +339,7 @@ const LoginPage = () => {
 
             {/* Security Badge */}
             <div className="security-badge">
-                  aria-label={showPassword ? t('auth.hidePassword') : t('auth.showPassword')}
-                  aria-pressed={showPassword}
+              🔒 {t('auth.secureLogin')}
             </div>
 
             {/* Register Link */}
